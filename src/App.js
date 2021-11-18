@@ -2,23 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  let posts = '강남 고기 맛집'; // 데이터
+  let fontColor = { color : 'red', fontSize : '30px'};
+
+  function 함수() {
+    return 100
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          안녕하세요. 반갑습니다.
-        </p>
-          저장시 실시간 변경 성공!
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="black-nav">
+        <div style={fontColor}>개발 Blog</div>
+      </div>
+      <img src={logo} />
+      <h4>{posts}</h4>
+      <h4>{함수()}</h4>
     </div>
   );
 }
