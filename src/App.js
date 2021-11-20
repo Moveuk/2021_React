@@ -11,15 +11,26 @@ function App() {
   let [titles, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '코딩 수업']); // [a,b]
   // a에는 남자코트추천이 들어가고
 
-  let posts = '강남 고기 맛집'; // 데이터
+  const arr = Array.from({length: titles.length}, () => 0);
+
+  let [따봉, 따봉변경] = useState(arr);
+  let [button, changeButton] = useState(titles[0]);
+
+  function 글제목바꾸기() {
+    var newArray = [...titles]; // ... : spread operator (ES6 문법) : 해당 값의 중괄호 대괄호를 벗겨서 데이터 반환.
+    newArray[0] = `여자 코트 추천`;
+    글제목변경(newArray);
+  }
+
   return (
     <div className="App">
       <div className="black-nav">
         <div>개발 Blog</div>
       </div>
+      <button onClick={글제목바꾸기}>버튼</button>
       {titles.map((title, index) => (
         <div className="list" className={index}>
-          <h3> {title} </h3>
+          <h3> {title} <span onClick={() => { 따봉변경(따봉[index] + 1) }}> 👍</span> {따봉[index]} </h3>
           <p>2월 17일 발행</p>
           <hr />
         </div>

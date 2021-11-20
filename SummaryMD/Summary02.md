@@ -110,6 +110,9 @@
    
 홈페이지의 상단 제목과 같은 변경이 적은 부분들은 state를 사용할 필요가 없으며 정렬, 수정 등을 통하여 변경이 잦은 부분들, 중요한 데이터들을 state에 저장하여 사용할 수 있도록 하자.<br>
 
+   <br>
+   <hr>
+   
 ### array.map 사용하여 list 만들기
 
 map은 array에 들어있는 함수이며 기본형은 다음과 같다.
@@ -134,4 +137,59 @@ numbers.map((number, index, source) => {
 
 
 이것 외에도 다른 함수를 만들어 중괄호 안에 함수를 호출하여 div를 생성해내는 방법도 있으나 가독성이 떨어지고 불편하므로 map을 사용하여 만들었다.
+
+
+   <br>
+   <hr>
+   
+### 클릭 이벤트 리스너
+
+기존 JS 에서는 `onclick` 혹은 `addeventlistener`를 사용해서 이벤트 리스너를 사용했다.
+
+![image](https://user-images.githubusercontent.com/84966961/142576987-578d4611-53eb-4cbf-8823-4717280af72f.png)
+
+
+중괄호 {} 내부에는 `1+1`이런 식의 직접적인 계산식이 아닌 함수를 넣어서 사용해야한다.
+   
+전통적인 `function 함수() {}` 방식을 사용하거나 `() => {}` 를 사용하여 함수식을 작성하면 된다.
+   
+useState의 방식을 사용하여 좋아요 버튼 클릭시 옆의 숫자가 올라가도록 하였는데 배열의 state데이터 값과 state 변경 데이터 함수를 사용하여 만들어 주었다. state의 장점은 재렌더링을 사용하여 화면이 바뀐다는 점이며 state 데이터가 변경될 때 화면의 재렌더링이 일어나게 된다.
+   
+단, 지금의 경우에는 따봉 클릭시 동시에 숫자가 올라가 버린다.
+
+![image](https://user-images.githubusercontent.com/84966961/142581702-306cfdb4-094d-42ca-85f2-1b355e3149ce.png)
+
+![image](https://user-images.githubusercontent.com/84966961/142581908-bdb90791-19f4-4b23-9346-9104ba30e725.png)
+
+
+   <br>
+   <hr>
+   
+### state 배열 변경 방식
+
+ 직접 배열을 변경하는 것이 아니라 배열을 복사하여 값을 변경한 후 state데이터 변경 함수에 넣어 값을 변경한다.
+ 
+ 단, 이 때 reference data type의 채로 공유하여 복사하는 것이 아니라 `...` spread operator를 사용하여 deep copy하여 변경한다.
+ 
+ ```
+ var newArray = titles; // 배열의 복사지만 이것은 그냥 참조형 데이터 공유일뿐임.
+ 
+ ||
+ \/
+ 
+ var newArray = [...titles]; // ... : spread operator (ES6 문법) : 해당 값의 중괄호 대괄호를 벗겨서 데이터 반환.
+```
+
+![image](https://user-images.githubusercontent.com/84966961/142586429-edb6e6be-24c9-4853-a58c-cdd7a4411223.png)   
+출처 : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+<br>
+
+✨ **직접 변경을 안하고 복사하는 이유**
+```
+ React 대 원칙 : immutable data
+
+ React 개발자들의 권장 사항이기 때문 : 모든 state 데이터들은 직접 수정되면 안되는 대 원칙을 가지고 있음.
+```
+
 
